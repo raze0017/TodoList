@@ -1,0 +1,23 @@
+{
+  "name": "todolist",
+  "version": "1.0.0",
+  "description": "yeah",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raze0017/TodoList.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/raze0017/TodoList/issues"
+  },
+  "homepage": "https://github.com/raze0017/TodoList#readme",
+  "devDependencies": {
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4"
+  }
+}
