@@ -2,9 +2,13 @@
 Basic files and directories created, using npm and webpack
 
 #htmlcss structure
--There should be a navigation bar with an option to create new tasks.
--Header
--Viewing of tasks in seperate cards(Javascript)
+    -There should be a navigation bar with an option to create new tasks.
+    -Header
+    -Viewing of tasks in seperate cards(Javascript)
 
-how?
--grid?
+    how?
+    -grid?
+    using grid properties made the basic structure
+
+    colors
+    -used a purplish shade allover for primary and secondary not decided yet for accent
