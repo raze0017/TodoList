@@ -1,0 +1,14 @@
+
+
+.addTask{
+    border: 5px solid #e845d5;
+    background-color: #e091f0;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    color: white;
+    width: 1000px;
+    height: 50px;
+    font-size: 25px;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}

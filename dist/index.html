@@ -5,14 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To-do-List</title>
     <link rel="stylesheet" href="./styles.css">
-    <script src="main.js"></script>
+    <link rel="stylesheet" href="./project.css">
+    <link rel="stylesheet" href="./ display.css">
+    
 </head>
 <body>
+    <script src="main.js"></script>
     <div class="container">
         <div class="header box">To-do-List</div>
-        <div class="nav box"></div>
-        <div class="display box"></div>
+        <div class="nav box">
+            <div class="projectContainer">
+                <form action="example.com/path" method="post">
+                    <input type="text" class="project" placeholder="Add New Project" name="projectName">
+                    <button type="submit" class="butt">Add</button>
+                </form>
+            </div>
+            <div class="allProjects">
+                <div class="default proj">Project default</div>
+            </div>
+            
+        </div>
+        <div class="display box">
+            <button class="addTask">Add Task</button>
+           
+        </div>
         <div class="credits box">Raze@top</div>
     </div>
+    
 </body>
 </html>

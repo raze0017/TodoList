@@ -12,3 +12,9 @@ Basic files and directories created, using npm and webpack
 
     colors
     -used a purplish shade allover for primary and secondary not decided yet for accent
+#js
+    project list
+    -a form to take the project name
+
+    tasklist
+    -a button to display a form for input of task details

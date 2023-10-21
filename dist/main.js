@@ -1,0 +1,1 @@
+(()=>{"use strict";document.addEventListener("DOMContentLoaded",(function(){const e=document.querySelector(".butt"),t=document.querySelector(".project");e.addEventListener("click",(function(e){e.preventDefault(),t.value,t.value=""})),document.querySelector(".addTask").addEventListener("click",(()=>{document.querySelector("display")}))}))})();
