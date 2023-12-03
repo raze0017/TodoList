@@ -3,7 +3,7 @@
     grid-template-rows: 1fr 12fr 1fr;
     grid-template-columns: 1fr 1fr 3fr 1fr;
     color: white;
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family: monospace;
 }
 .box{
     border: 5px solid #E091F0;
@@ -25,7 +25,7 @@
     border-radius: 25px;
     display: flex;
     flex-direction: column;
-    
+    font-family: fantasy;
 }
 .display{
     grid-row: 2/4;
@@ -41,8 +41,62 @@
     background-color: #e091f0;
     color: white;
 }
+.allProjects{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
 button{
 opacity: 1;
     transition: 0.3s;
 }
 button:hover {opacity: 0.6}
+dialog {
+    animation: fade-out 0.2s ease-out;
+  }
+  dialog[open] {
+    animation: fade-in 0.2s ease-out;
+  }
+  dialog[open]::backdrop {
+    animation: backdrop-fade-in 0.3s ease-out forwards;
+  }
+  
+  /* Animation keyframes */
+  
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+      transform: scaleY(0);
+      display: none;
+    }
+  
+    100% {
+      opacity: 1;
+      transform: scaleY(1);
+      display: block;
+    }
+  }
+  
+  @keyframes fade-out {
+    0% {
+      opacity: 1;
+      transform: scaleY(1);
+      display: block;
+    }
+  
+    100% {
+      opacity: 0;
+      transform: scaleY(0);
+      display: none;
+    }
+  }
+  
+  @keyframes backdrop-fade-in {
+    0% {
+      background-color: rgb(0 0 0 / 0);
+    }
+  
+    100% {
+      background-color: rgb(0 0 0 / 0.25);
+    }
+  }

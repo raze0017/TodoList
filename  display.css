@@ -1,8 +1,34 @@
-
+.displayBox{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    
+}
+.nav{
+    font-family: cursive;
+}
+.taskCont{
+    display: flex;
+    flex-direction: column;
+}
+.taskInd{
+    display: flex;
+    margin-top: 20px;
+    border: 5px solid #e845d5;
+    background-color: #e091f0;
+    align-items: center;
+    justify-content: space-evenly;
+    color: white;
+    width: 1000px;
+    height: 25px;
+    font-weight: 600;
+    font-size: 25px;
+    font-family: monospace;
+}
 
 .addTask{
     border: 5px solid #e845d5;
-    background-color: #e091f0;
+    background-color: #70035f;
     align-items: center;
     display: flex;
     justify-content: center;
@@ -11,4 +37,27 @@
     height: 50px;
     font-size: 25px;
     font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+.taskCont{
+    display: flex;
+    justify-content: center;
+}
+.tab{
+    border: 5px solid #6da771;
+    background-color: #c01efa;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: white;
+    width: 300px;
+    height: 300px;
+    font-size: 25px;
+    border-radius: 50px;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+form{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
