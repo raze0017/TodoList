@@ -4,9 +4,6 @@
     justify-content: space-evenly;
     
 }
-.nav{
-    font-family: cursive;
-}
 .taskCont{
     display: flex;
     flex-direction: column;
@@ -43,8 +40,7 @@
     justify-content: center;
 }
 .tab{
-    border: 5px solid #6da771;
-    background-color: #c01efa;
+  
     align-items: center;
     display: flex;
     flex-direction: column;
@@ -53,11 +49,23 @@
     width: 300px;
     height: 300px;
     font-size: 25px;
-    border-radius: 50px;
     font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 form{
     display: flex;
     justify-content: center;
     flex-direction: column;
+}
+.addTaskSub{
+    width: 150px;
+    height: 40px;
+    border: 2px solid #e845d5;
+    margin-top: 20px;
+    border-radius: 20px;
+    color: white;
+}
+.checkbox{
+    width:23px;
+    height: 23px;
+    border: 2px solid #e845d5;
 }

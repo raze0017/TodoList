@@ -56,6 +56,9 @@ dialog {
   }
   dialog[open] {
     animation: fade-in 0.2s ease-out;
+    border: 5px solid rgb(209, 1, 209);
+    border-radius: 20px;
+    background-color: #c01efa;
   }
   dialog[open]::backdrop {
     animation: backdrop-fade-in 0.3s ease-out forwards;
