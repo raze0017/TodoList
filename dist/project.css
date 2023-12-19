@@ -19,6 +19,11 @@ form{
     background-color: #e845d5;
     color: white;
 }
+.deleteButton,.deleteButton2{
+   
+    background-color: none;
+    background: transparent;
+}
 .butt{
     background-color: #e845d5;
     height: 30px;

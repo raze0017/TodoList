@@ -9,11 +9,9 @@ document.addEventListener('DOMContentLoaded', function() {
         this.tkName=tkName;
         this.dateVal=dateVal;
     }
-    const taskkdef= new addtasks("default","Cook","12/5/22");
     var projNamep="default";
     
-    tasksarray.push(taskkdef);
-    console.log(tasksarray);
+    
     
     const dialog=document.querySelector('.dialog');
     const tab=document.createElement('div');
@@ -46,35 +44,53 @@ document.addEventListener('DOMContentLoaded', function() {
     const projectAdd=document.querySelector('.butt')
     const formProjName=document.querySelector('.project')    
 
-    const defaultsel=document.querySelector('.default');
-    defaultsel.addEventListener('click',function(event){
-        const taskDispSel=document.querySelector('.taskCont');
-        taskDispSel.innerHTML="";
-        projNamep="default";  
-        console.log(projNamep);
-        tasksarray.forEach(task => {
-            if(task.projName==projNamep){
-                const taskDisplay=document.querySelector('.taskCont');
-                const taskInd=document.createElement('div');       
-                taskInd.classList.add('taskInd');
-                const taskNamLab=document.createElement('p');
-                taskNamLab.textContent=`Task: ${task.tkName}`;
-                const taskTimLab=document.createElement('p');
-                taskTimLab.textContent=`Deadline:${task.dateVal} `;
-                
-                taskInd.appendChild(taskNamLab);
-                taskInd.appendChild(taskTimLab);
-                
-                
-                taskDisplay.appendChild(taskInd);
-            }
-        });
-        });
     
-            projectAdd.addEventListener('click',function(event){
+    function displayProjects(){
+        const projectList=document.querySelector('.allProjects');
+        console.log(projectList);
+
+        const storedProjects=JSON.parse(localStorage.getItem("projects"));
+        if (storedProjects){
+            storedProjects.forEach((project) => {
+                const newProj=document.createElement('div')
+                newProj.classList.add('newProj');   
+                newProj.textContent=project;
+                projectList.appendChild(newProj);
+                
+                
+                newProj.addEventListener('click',function(event){
+                const taskDispSel=document.querySelector('.taskCont');
+                taskDispSel.innerHTML="";
+                projNamep=newProj.textContent;  
+                console.log(projNamep);
+                displayTasks(projNamep);
+                                            
+            })
+            });
+        }
+    }    
+    function loadfromLocal(){
+        
+        const storedProjects = JSON.parse(localStorage.getItem("projects"));
+        if (storedProjects) {
+            displayProjects();
+        }
+        const storedtasks=JSON.parse(localStorage.getItem("tasks"));
+        
+        if (storedtasks){
+            
+            tasksarray.push(...storedtasks);
+            console.log(tasksarray);
+            displayTasks(projNamep);
+           
+        }
+
+    }
+        projectAdd.addEventListener('click',function(event){
         event.preventDefault();
         const projectName=formProjName.value;
         formProjName.value="";
+        
         const projectList=document.querySelector('.allProjects')
         const newProj=document.createElement('div')
         newProj.classList.add('newProj');   
@@ -87,26 +103,12 @@ document.addEventListener('DOMContentLoaded', function() {
             taskDispSel.innerHTML="";
             projNamep=newProj.textContent;  
             console.log(projNamep);
-            tasksarray.forEach(task => {
-                if(task.projName==projNamep){
-                    const taskDisplay=document.querySelector('.taskCont');
-                    const taskInd=document.createElement('div');       
-                    taskInd.classList.add('taskInd');
-                    const taskNamLab=document.createElement('p');
-                    taskNamLab.textContent=`Task: ${task.tkName}`;
-                    const taskTimLab=document.createElement('p');
-                    taskTimLab.textContent=`Deadline:${task.dateVal} `;
-                    
-                    taskInd.appendChild(taskNamLab);
-                    taskInd.appendChild(taskTimLab);
-                    
-                    
-                    taskDisplay.appendChild(taskInd);
-                }
-            });
-            showtasks();
-                              
+            displayTasks(projNamep);
+                                          
             })
+            const storedProjects = JSON.parse(localStorage.getItem("projects")) || [];
+            storedProjects.push(projectName);
+            localStorage.setItem("projects", JSON.stringify(storedProjects));    
                 
         }); 
         const addTk=document.querySelector('.addTask');
@@ -128,27 +130,79 @@ document.addEventListener('DOMContentLoaded', function() {
                 const dateVal=date.value;
                 const newTask= new addtasks(projNamep,tkName,dateVal);
                 tasksarray.push(newTask);
-                console.log(tasksarray);
+                
+                localStorage.setItem("tasks",JSON.stringify(tasksarray));
+                
+                
                 nameinput.value='';
                 date.value='';
+                displayTasks(projNamep);
+                
+                dialog.close();        
+    });
+    function displayTasks(projNamep){ 
+        const taskDispSel=document.querySelector('.taskCont');
+        taskDispSel.innerHTML="";       
+        tasksarray.forEach((task,index) => {
+            if(task.projName==projNamep){
+                
                 const taskDisplay=document.querySelector('.taskCont');
                 const taskInd=document.createElement('div');       
                 taskInd.classList.add('taskInd');
                 const taskNamLab=document.createElement('p');
-                taskNamLab.textContent=`Task: ${newTask.tkName}`;
+                taskNamLab.textContent=`Task: ${task.tkName}`;
                 const taskTimLab=document.createElement('p');
-                taskTimLab.textContent=`Deadline:${newTask.dateVal} `;
+                taskTimLab.textContent=`Deadline:${task.dateVal} `;
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.name = `taskCheckbox`;
+                checkbox.value = 'checked';
+                checkbox.classList.add('checkbox');
+                const deleteButton=document.createElement('button');
                 
+                deleteButton.classList.add('deleteButton');
+                deleteButton.innerHTML = '<i class="fa fa-trash" style="font-size:20px;color:red;" aria-hidden="true"></i> ';
+                deleteButton.addEventListener('click',()=>{
+                    removeTask(index);
+                })
+                checkbox.addEventListener('change', function() {
+                if (this.checked) {
+                    // Apply styling when checkbox is checked
+                    taskNamLab.style.textDecoration = 'line-through';
+                    taskTimLab.style.textDecoration = 'line-through';
+                } else {
+                    // Remove styling when checkbox is unchecked
+                    taskNamLab.style.textDecoration = 'none';
+                    taskTimLab.style.textDecoration = 'none';
+                }
+            });
+            
+                taskInd.appendChild(checkbox);
                 taskInd.appendChild(taskNamLab);
                 taskInd.appendChild(taskTimLab);
-                
+                taskInd.appendChild(deleteButton);
                 
                 taskDisplay.appendChild(taskInd);
-                
-                dialog.close();        
-    });        
+            }
+        });
+    }
+    function removeTask(index){
+        tasksarray.splice(index,1);
+        console.log(tasksarray);
+        localStorage.setItem("tasks", JSON.stringify(tasksarray));
+        displayTasks(projNamep);
+    }
+    const defaultsel=document.querySelector('.default');
+    defaultsel.addEventListener('click',function(event){
+        const taskDispSel=document.querySelector('.taskCont');
+        taskDispSel.innerHTML="";
+        projNamep="default";  
+        console.log(projNamep);
+        displayTasks(projNamep);
+        });
     
-
-          
-         
+    displayTasks(projNamep);
+    
+    loadfromLocal();      
+    //localStorage.clear();
 });
